@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int main(){
+	setlocale(LC_ALL,"Portuguese");
+	int vetor[10], n, op, cont = 0, contador = 0;
+	
+	do{
+		printf("Escolha a opçãoo: \n1: Preencher vetor\n2: Listar Vetor\n3: Alterar valor\n4: Procurar valor\n5: Limpar Tela\n6: Sair\n");	
+		scanf("%d", &op);
+		switch(op){
+			case 1:
+				for(int i = 0; i < 10; i++){
+					printf("Digite o %dº valor: ", i+1);
+					scanf("%d",&vetor[i]);
+				}
+				cont++;
+				break;
+			case 2:
+				if(cont != 0){
+					for(int i = 0; i < 10; i++){
+						printf("Posição %d: %d \n", i+1, vetor[i]);
+					}
+				}else{
+					printf("Vetor Vazio!\n");
+				}
+				break;
+			case 3:
+				int posicao;
+				if(cont != 0){
+				printf("Escolha qual posição deseja alterar: ");
+				scanf("%d",&posicao);
+				if(posicao > 0 && posicao <= 10){
+						printf("Digite o valor: ");
+						scanf("%d",&vetor[posicao-1]);
+				}else{
+					printf("Posição não existe!");
+				}
+			}else{
+				printf("Vetor Vazio!");
+			}
+				break;
+			case 4:
+				int valor;
+				if(cont != 0){
+				printf("Escolha o valor a procurar: ");
+				scanf("%d",&valor);
+				for(int i = 0; i<10;i++){
+					if(valor == vetor[i]){
+						printf("Valor encontrado na posição %d\n",i+1);
+						contador++;
+					}
+				}
+				if(contador == 0){
+					printf("Valor não encontrado!\n");
+				}
+			}else{
+				printf("Vetor Vazio!");
+			}
+				break;
+			case 5:
+				system("cls");
+				break;
+			case 6: 
+				printf("Good Bye!");
+				break;
+			default:
+				printf("Opção Inválida!");			
+		}
+	}while(op != 6);
+}
